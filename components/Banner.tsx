@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        height: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -13,6 +13,7 @@ const Banner = () => {
         backgroundImage: `url(${backgroundImg.src})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
+        flexGrow: 1,
       }}
     >
       <Container maxWidth='md'>

@@ -22,6 +22,8 @@ const KonvaStage = ({
   const [isDrawing, setIsDrawing] = React.useState<boolean>(false);
   const [shapeBeingDragged, setShapeBeingDragged] = React.useState(false);
   const [bgImage, setBgImage] = React.useState<HTMLImageElement | null>(null);
+  const [color, setColor] = React.useState<string>('#000000');
+  const [stroke, setStroke] = React.useState<number>(4);
 
   React.useEffect(() => {
     if (containerRef.current) {
@@ -39,6 +41,16 @@ const KonvaStage = ({
     }
   }, [imageUrl]);
 
+  const handleColorInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setColor(e.target.value);
+  };
+
+  const handleStrokeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStroke(Number(e.target.value));
+  };
+
+  console.log('color', color);
+
   const handleMouseDown = (e: any) => {
     const clickedOnEmptyStage = e.target === e.target.getStage();
     const shapeUnderPointer = e.target;
@@ -53,6 +65,8 @@ const KonvaStage = ({
       const newShape = {
         tool,
         points: [position.x, position.y, position.x, position.y],
+        color: color,
+        stroke: stroke,
         id: `tool_shape_${shapes.length}`,
       };
       shapeRef.current = newShape; // Assign the new shape to the ref
@@ -103,9 +117,9 @@ const KonvaStage = ({
             y={shape.points[1]}
             width={width}
             height={height}
-            fill='red'
+            fill={shape.color}
             stroke='black'
-            strokeWidth={4}
+            strokeWidth={shape.stroke}
             {...shapeProps}
           />
         );
@@ -120,9 +134,9 @@ const KonvaStage = ({
             x={shape.points[0]}
             y={shape.points[1]}
             radius={radius}
-            fill='blue'
+            fill={shape.color}
             stroke='black'
-            strokeWidth={4}
+            strokeWidth={shape.stroke}
             {...shapeProps}
           />
         );
@@ -132,8 +146,8 @@ const KonvaStage = ({
           <Line
             key={shape.id}
             points={shape.points}
-            stroke={shape.tool === 'line' ? 'black' : 'green'}
-            strokeWidth={4}
+            stroke={shape.tool === 'line' ? 'black' : shape.color}
+            strokeWidth={shape.stroke}
             tension={shape.tool === 'freehand' ? 0.5 : 0}
             lineCap='round'
             {...shapeProps}
@@ -177,7 +191,14 @@ const KonvaStage = ({
       flexDirection='column'
       alignItems='center'
     >
-      <DrawingTools setTool={setTool} handleExport={handleExport} />
+      <DrawingTools
+        setTool={setTool}
+        handleExport={handleExport}
+        color={color!}
+        handleColorChange={handleColorInputChange}
+        stroke={stroke!}
+        handleStrokeChange={handleStrokeInputChange}
+      />
       <Stage
         ref={stageRef}
         width={containerWidth}

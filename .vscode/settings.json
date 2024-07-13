@@ -1,7 +1,3 @@
 {
-  "cSpell.words": [
-    "FILEFLEX",
-    "Konva",
-    "Uploadthing"
-  ]
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

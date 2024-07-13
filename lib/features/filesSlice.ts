@@ -1,7 +1,7 @@
 import { RootState } from '@/lib/store';
 import { createSlice } from '@reduxjs/toolkit';
 
-interface File {
+export interface File {
   id: string;
   userId: string;
   email: string;

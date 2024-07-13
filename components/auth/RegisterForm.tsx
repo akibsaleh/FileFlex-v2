@@ -2,7 +2,6 @@
 import registerAction from '@/actions/register.action';
 import FormInput from '@/components/auth/FormInput';
 import SocialLogin from '@/components/auth/SocialLogin';
-import TailLoaderIcon from '@/components/icons/TailLoaderIcon';
 import RegisterSchema from '@/schema/RegisterSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -17,6 +16,7 @@ import {
 import Link from 'next/link';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { PropagateLoader } from 'react-spinners';
 import { z } from 'zod';
 
 const RegisterForm = () => {
@@ -105,7 +105,15 @@ const RegisterForm = () => {
             disabled={isPending}
             sx={{ height: 48 }}
           >
-            {isPending ? <TailLoaderIcon /> : 'Register'}
+            {isPending ? (
+              <PropagateLoader
+                color='#0b3c5d'
+                size={12}
+                style={{ marginBottom: '10px' }}
+              />
+            ) : (
+              'Register'
+            )}
           </Button>
         </Stack>
       </FormProvider>

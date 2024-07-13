@@ -13,7 +13,6 @@ import ClientCacheProvider from './ClientCacheProvider';
 import './globals.css';
 
 import { ourFileRouter } from '@/app/api/uploadthing/core';
-import Footer from '../components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -38,7 +37,6 @@ export default function RootLayout({
                 routerConfig={extractRouterConfig(ourFileRouter)}
               />
               {children}
-              <Footer />
             </SessionProvider>
           </ThemeProvider>
         </ClientCacheProvider>

@@ -2,7 +2,6 @@
 import loginAction from '@/actions/login.action';
 import FormInput from '@/components/auth/FormInput';
 import SocialLogin from '@/components/auth/SocialLogin';
-import TailLoaderIcon from '@/components/icons/TailLoaderIcon';
 import LoginSchema from '@/schema/LoginSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -18,6 +17,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { PropagateLoader } from 'react-spinners';
 import { z } from 'zod';
 
 const LoginForm = () => {
@@ -99,7 +99,15 @@ const LoginForm = () => {
             sx={{ height: 48 }}
             disabled={isPending}
           >
-            {isPending ? <TailLoaderIcon /> : 'Log in'}
+            {isPending ? (
+              <PropagateLoader
+                color='#0b3c5d'
+                size={12}
+                style={{ marginBottom: '10px' }}
+              />
+            ) : (
+              'Login'
+            )}
           </Button>
         </Stack>
       </FormProvider>

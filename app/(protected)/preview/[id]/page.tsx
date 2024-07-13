@@ -1,8 +1,7 @@
-import Header from '@/components/Header';
+import getSingleFile from '@/actions/getSingleFile.action';
+import ImagePreview from '@/components/FileManagement/ImagePreview';
+import PdfPreview from '@/components/FileManagement/PdfPreview';
 import { Alert, Box, Container } from '@mui/material';
-import getSingleFile from '../../../../actions/getSingleFile.action';
-import ImagePreview from '../../../../components/FileManagement/ImagePreview';
-import PdfPreview from '../../../../components/FileManagement/PdfPreview';
 
 export default async function page({ params }: { params: { id: string } }) {
   const file = await getSingleFile(params.id);
@@ -14,8 +13,8 @@ export default async function page({ params }: { params: { id: string } }) {
       display='flex'
       flexDirection='column'
       alignItems='center'
+      flexGrow={1}
     >
-      <Header color='primary' elevation={1} />
       <Container
         component='section'
         maxWidth='xl'

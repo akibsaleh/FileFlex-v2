@@ -1,6 +1,7 @@
 'use client';
 
 import { addFiles, getAllFiles } from '@/lib/features/filesSlice';
+import pdfPlaceholder from '@/public/PDF.jpg';
 import {
   AccessTime,
   AppRegistration,
@@ -28,7 +29,6 @@ import {
 import Link from 'next/link';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PdfCardMedia from './PdfCardMedia';
 
 type File = {
   id: string;
@@ -80,7 +80,13 @@ const FileList = ({ files }: { files: File[] }) => {
                     />
                   )}
                   {file.fileType === 'pdf' && (
-                    <PdfCardMedia pdfUrl={file.url} />
+                    <CardMedia
+                      component='img'
+                      height='200'
+                      sx={{ maxHeight: 200 }}
+                      image={pdfPlaceholder.src}
+                      alt={file.fileName}
+                    />
                   )}
                 </CardActionArea>
                 <CardContent>
