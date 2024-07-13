@@ -24,8 +24,12 @@ export default async function page() {
   }));
 
   return (
-    <Container maxWidth='xl' component='section'>
-      <Box py={3}>
+    <Container
+      maxWidth='xl'
+      component='section'
+      sx={{ height: '100%', flexGrow: 1 }}
+    >
+      <Box py={3} display='flex' flexDirection='column' height='100%'>
         <FileUploader />
         <Typography>{!files.status && files.message}</Typography>
         <FileList files={files.status ? serializedFiles : []} />

@@ -1,5 +1,6 @@
 import backgroundImg from '@/public/banner-fileflex.jpg'; // Replace with your background image
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import Link from 'next/link';
 
 const Banner = () => {
   return (
@@ -38,12 +39,15 @@ const Banner = () => {
                 color: 'text.primary',
               }}
             >
-              Unlock the power of your data with our advanced analytics tools.
+              Upload and store your image and pdf files. Draw on your images and
+              download
             </Typography>
           </Grid>
           <Grid item>
             <Button
               variant='contained'
+              LinkComponent={Link}
+              href='/auth/login'
               sx={{
                 backgroundColor: 'secondary.main',
                 color: 'white',

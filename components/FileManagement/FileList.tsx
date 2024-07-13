@@ -50,9 +50,7 @@ const FileList = ({ files }: { files: File[] }) => {
   }, [dispatch, files]);
 
   React.useEffect(() => {
-    return () => {
-      loadFiles();
-    };
+    loadFiles();
   }, [loadFiles]);
 
   if (files.length === 0) return <Typography>No file found</Typography>;
@@ -61,20 +59,30 @@ const FileList = ({ files }: { files: File[] }) => {
       component='section'
       display='flex'
       flexDirection='column'
+      flexGrow={1}
       width='100%'
       py={4}
     >
       <Grid container spacing={2}>
         {allFiles.length > 0 &&
           allFiles.map((file) => (
-            <Grid key={file.id} item xs={3}>
-              <Card sx={{ maxWidth: 400 }}>
+            <Grid
+              key={file.id}
+              item
+              xs={12}
+              md={6}
+              lg={4}
+              xl={3}
+              display='flex'
+              justifyContent='center'
+            >
+              <Card sx={{ maxWidth: 800, width: '100%' }}>
                 <CardActionArea>
                   {file.fileType === 'image' && (
                     <CardMedia
                       component='img'
-                      height='200'
-                      sx={{ maxHeight: 200 }}
+                      height='260'
+                      sx={{ maxHeight: 260 }}
                       image={file.url}
                       alt={file.fileName}
                     />
